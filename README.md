@@ -1,85 +1,87 @@
 # SQL_MEXICO_TOY_STORE_PROJECT
-This is a simple SQL project showing Sales, Profit and Inventory analysis of a fictitious toy Store Chain in Mexico
-We have the sales & inventory data along with
-store and product information for a fictitious toy store
-chain in Mexico.
-The data shows more than 800,000 transaction from
-January 1st, 2017 to September 30th, 2018
-The objective is to prepare the data, analyze and
-visualize it, and subsequently outline findings which
-allow the toy store chain to enhance its decision-
-making capabilities
 
-**DATA MODEL**
-The Database has 4 tables as shown in the previous slide.
-Products and Stores are the data tables with Primary Keys
-named Product ID and Store ID respectively.
-Inventory is also a data table with composite primary keys
-Store ID and Product ID . Store ID and Product ID of Inventory
-table are connected to the primary keys, named - Store ID of
-Stores Table and Product ID of Products table
-Sales table has primary key named Sale ID. The foreign keys
-being Store ID and Product ID -connected to the primary keys,
-named - Store ID of Stores Table and Product ID of Products
-table
+This project involves the analysis of sales, profit, and inventory data for a fictitious toy store chain in Mexico. The objective is to optimize business decisions by analyzing key metrics such as revenue, profit margin, stock levels, and sales trends.
 
-**Revenue – COGS- Profit Margin – Total Quantity Ordered**
-The Store Chain earned a revenue of $14
-million.
-The Profit is more than $4 million
-The Cost incurred for the Store Chain is
-around $10.4 million
-The company has an overall profit margin of
-around 28% which also matches the ideal
-profit margin of a Retail Toy Store
-Mexico Toy Store has sold more than 1
-million units of products from January 2017
-till September 2018
+## Project Overview:
+The toy store chain has over 800,000 transactions recorded from January 1st, 2017 to September 30th, 2018. The database consists of four key tables:
+- **Products**: Product details, including price and cost.
+- **Stores**: Information on store locations and identifiers.
+- **Sales**: Transactional data with product sales per store.
+- **Inventory**: Stock data for each product at each store.
 
-**SALES AND % CHANGE IN SALES OVER THE PERIODOFTIME**
-The Toy Store has experienced a growth since January 2017 to September 2018 on overall basis. As per analysis there is a positive trend
-found in the sales. The way sales gone up in the month of March - April in 2017, same pattern could be found around March in 2018 as well.
-Also, we could see a rise in sales in the month of November and December in 2017 probably because of the Christmas Eve. However, the
-MoM change seems to be volatile. Need to check the Economic factors or market condition during the summer months to manage
-budgeting, inventory etc
+## Data Model
 
-**SALES AND PROFIT ANALYSIS**
-Toys and Art & Crafts categories drive more than 50% of total revenue. At the same time, it could be seen that Electronics and
-Games are having a relatively high Profit Margin
-Importantly the same categories are also the popular one across the stores & location in terms of profit and revenue.
+The project utilizes four key tables to store and manage toy store data:
 
-As per overall analysis, Leg Bricks, Colorbuds, Action
-Figure, Magic Sandare among top 5 products both in
-terms of Sales and Profit
-For Toys Category - Lego Bricks and Action Figures are
-responsible for lion’s share of Profit. For Electronics
-Category Colorbuds constitutes a huge share of profit of
-more than $834 K for the company
+### 1. **Products Table**
+- **Purpose**: Contains product details like `Product_ID`, `Product_Name`, `Product_Price`, and `Product_Cost`.
+- **Relationships**: Linked to **Sales** (via `Product_ID`) and **Inventory** (via `Product_ID`).
 
-The Store has 50 outlets across 29 different cities in Mexico. Downtown is the most popular store location having high density of
-population.
-More than 50% profit is being generated from Downtown area itself
-However, a closer look states that among 3 stores in Airport area 2 are generating topmost revenue for the Toy store chain. Hence further
-study should be done by Marketing Team to realize whether to expand the business over there to optimize sales
+### 2. **Stores Table**
+- **Purpose**: Stores details about each store such as `Store_ID`, `Store_Name`, and `Store_Location`.
+- **Relationships**: Linked to **Sales** and **Inventory** via `Store_ID`.
 
-**INVENTORY ANALYSIS**
-As on September 30, 2018, the store has 29742 products in stock which results in having $300 K
-tied up in the inventory
-There are a Total of 20 Products for which the inventory is 0 across 37 different Stores. Here if
-we drill down further then Action Figure is a Product which falls under topmost 5 revenue
-generating product. More than two stores are there where Action Figure stock is 0 and a
-potential revenue loss is being incurred
+### 3. **Inventory Table**
+- **Purpose**: Tracks stock levels (`Stock_On_Hand`) of each product per store.
+- **Relationships**: Linked to **Stores** and **Products** via `Store_ID` and `Product_ID`.
 
-As we dig dip into the sales analysis, it could be seen that there are a good number of Products having low potential to generate sales. Uno
-Cards, Play foam, Monopoly are some of the Products which could not even touch the mark of $100 K revenue. after doing inventory
-analysis it is clear that more than $47,000 is tied up in inventory for these products. Hence before restocking for the upcoming months, we
-can let go off some of these products to maximize sales and profit
+### 4. **Sales Table**
+- **Purpose**: Records sales transactions, including `Sale_ID`, `Selling_Date`, `Store_ID`, `Product_ID`, and `Units`.
+- **Relationships**: Linked to **Stores** and **Products** via `Store_ID` and `Product_ID`.
 
-We have identified topmost 10 products which have comparatively high daily demands. As per that they need restocking within 10-15
-days to meet the demand
-Colorbuds, Lego Bricks, Action Figures are some of the important Product Names due to their Revenue and Profit generating capacity –
-which need restocking even within 10-12 days.
-Overall the Store Chain has a cumulative monthly demand of around 52,000 units of products, whereas currently it has around 29,500
-units of products on hand. Even though the stock varies across the Stores and as per their demand, the analysis clearly states that
-stock needs to be replenished in order to meet the demand of coming Christmas Eve of 2018
+### Relationships Overview:
+- **Products** ↔ **Sales** ↔ **Stores**
+- **Products** ↔ **Inventory** ↔ **Stores**
 
+This model supports the analysis of sales, inventory, and profit data across various stores, products, and categories.
+
+
+## Key Features:
+- **Revenue, Profit & Cost Calculation**: Calculated total revenue, profit, and cost of goods sold (COGS) using SQL aggregation functions.
+- **Profit Margin Analysis**: Analyzed profit margin by product category and store, identifying high-margin products and categories.
+- **Sales Trends**: Visualized monthly sales trends, identifying growth periods and volatile months.
+- **Top & Bottom Products**: Ranked products by sales and profit, identifying the most and least profitable items.
+- **Inventory Optimization**: Assessed inventory stock levels, highlighting low stock and overstocked products.
+- **Store & Location Analysis**: Evaluated performance across stores and cities, identifying the best-performing locations.
+- **Restocking Alerts**: Generated restocking alerts for products based on sales velocity and current stock levels.
+
+## SQL Functions & Techniques Used:
+- **Aggregation**: `SUM()`, `ROUND()`, `COUNT()`, `AVG()`, `GROUP BY` for summarizing sales and inventory data.
+- **Joins**: `INNER JOIN` to combine data from multiple tables (e.g., sales with products, inventory with products).
+- **Window Functions**: `ROW_NUMBER()` and `LAG()` for ranking and calculating percentage changes over time.
+- **Date Formatting & Calculation**: Used `STR_TO_DATE()` to convert string dates and calculate sales trends by month.
+- **Data Transformation**: Applied `UPDATE`, `REPLACE()`, and `CONCAT()` for data cleaning and transformation.
+- **Subqueries**: Used for filtering and ranking products, stores, and categories based on performance metrics.
+
+## Key Insights:
+- **Revenue**: The toy store generated over $14M in revenue and $4M in profit.
+- **Top Products**: Lego Bricks, Action Figures, and Colorbuds were top sellers, contributing significantly to both sales and profit.
+- **Store Performance**: Downtown stores generate the highest profit, but airport stores showed high revenue potential, suggesting an area for further business expansion.
+- **Inventory Management**: Some products (e.g., Uno Cards, Play Foam) showed low sales and high inventory, indicating potential for inventory reduction. 
+
+## Recommendations
+
+### 1. **Inventory Optimization**
+   - **Action Figure** and **Lego Bricks** have high sales potential but are frequently out of stock. Ensure these products are restocked more frequently to avoid revenue loss.
+   - Review and clear **low-performing products** like **Uno Cards** and **Play Foam** that generate minimal sales and contribute significantly to tied-up inventory.
+
+### 2. **Sales Analysis**
+   - **Toys** and **Art & Crafts** categories contribute more than 50% of total revenue. Focus on enhancing stock and promotional strategies for these categories.
+   - Focus on **high-profit categories** like **Electronics** and **Games** for targeted marketing and promotion to increase overall profitability.
+
+### 3. **Store Performance**
+   - **Downtown stores** are the highest revenue generators, but the **Airport stores** are performing well too, making them ideal candidates for potential expansion.
+   - Monitor sales patterns closely for **seasonal changes** (e.g., holiday seasons like Christmas) to optimize inventory and sales strategies.
+
+### 4. **Profit Margin Focus**
+   - Focus on **high-margin products** to maximize profitability, especially in categories like **Electronics** and **Games**, where profit margins are significantly higher.
+
+### 5. **Restocking and Demand Forecasting**
+   - Identify top-selling products and ensure they are restocked **within 10-15 days** to meet rising demand, especially in the lead-up to **holiday seasons**.
+   - Conduct **demand forecasting** to predict the right stock levels for key products, preventing both stockouts and overstock situations.
+
+### 6. **Location-Based Strategy**
+   - **Store locations** with high sales volume should receive targeted marketing and stock replenishment strategies.
+   - Conduct further studies on **airport stores** to explore their expansion potential and optimize their inventory and sales.
+
+These recommendations aim to improve **inventory management**, **sales forecasting**, and **profitability**, optimizing the store chain's overall performance.
